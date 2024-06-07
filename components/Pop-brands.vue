@@ -57,21 +57,21 @@ export default{
          
            items:[
                 {
-                    topImg:  '/brands/br_1.svg',
-                    bottomImg:  '/brands/br_2.svg',
+                    topImg:  '/brands/samsung.svg',
+                    bottomImg:  '/brands/apple.svg',
                 },
                 {
-                    topImg:  '/brands/br_3.svg',
-                    bottomImg:  '/brands/br_4.svg',
+                    topImg:  '/brands/huawey.svg',
+                    bottomImg:  '/brands/tefal.svg',
                 },{
-                    topImg:  '/brands/br_5.svg',
-                    bottomImg:  '/brands/br_6.svg',
+                    topImg:  '/brands/braun.svg',
+                    bottomImg:  '/brands/haier.svg',
                 },{
-                    topImg:  '/brands/br_7.svg',
-                    bottomImg:  '/brands/br_8.svg',
+                    topImg:  '/brands/philips.svg',
+                    bottomImg:  '/brands/sony.svg',
                 },{
-                    topImg:  '/brands/br_9.svg',
-                    bottomImg:  '/brands/br_10.svg',
+                    topImg:  '/brands/mi.svg',
+                    bottomImg:  '/brands/hp.svg',
                 },
                
                 

@@ -1,23 +1,66 @@
 <template>
   <div class="container">
-      <Nav-bar/>
-      <Cat-bar/>
-     
+
+    <div class="sticky">
+      <Nav-bar 
+            :goodsAll="goodsAll" 
+            :goodsCost="goodsCost" 
+            :likedAmount="likedAmount"
+            />
+
+        <Cat-bar/>         
+    </div>
+          
       <div class="header_categories">
         <Swipe-img/>
         <Product-day/>
       </div>
+
       <div class="centered">
-        <Hits-products/>
+        <Hits-products 
+          :goodsAll="goodsAll" 
+          :goodsCost="goodsCost" 
+          :likedAmount="likedAmount" 
+          @count-allGoods="countAllGoods"
+          @count-allLikes="countAllLikes"
+          @minus-like="minusLike"
+        />
+
         <div class="banner_wrap">
           <img src="/narrow_banner.jpg">
         </div>
-        <New-products/>
-        <Recom-you/>
+
+        <New-products 
+          :goodsAll="goodsAll" 
+          :goodsCost="goodsCost" 
+          :likedAmount="likedAmount" 
+          @count-allGoods="countAllGoods"
+          @count-allLikes="countAllLikes"
+          @minus-like="minusLike"
+          />
+
+        <Recom-you 
+          goodsAll="goodsAll" 
+          :goodsCost="goodsCost" 
+          :likedAmount="likedAmount" 
+          @count-allGoods="countAllGoods"
+          @count-allLikes="countAllLikes"
+          @minus-like="minusLike"
+          />
+
         <div class="banner_wrap">
           <img src="/narrow_banner_2.jpg">
         </div>
-        <Sale-products/>
+       
+        <Sale-products 
+          goodsAll="goodsAll" 
+          :goodsCost="goodsCost" 
+          :likedAmount="likedAmount" 
+          @count-allGoods="countAllGoods"
+          @count-allLikes="countAllLikes"
+          @minus-like="minusLike"
+          />
+
         <News-promotions/>
         <Pop-brands/>
 
@@ -28,6 +71,25 @@
 
 <script>
 export default {
+  data(){
+    return{
+      goodsAll: 0,
+      goodsCost: 0,
+      likedAmount: 0,
+    }
+  },
+  methods:{
+    countAllGoods(cost){
+      this.goodsAll+=1;
+      this.goodsCost+=cost
+    },
+    countAllLikes(){
+      this.likedAmount+=1;
+    },
+    minusLike(){
+      this.likedAmount-=1;
+    }
+  }
  }
 </script>
 
@@ -75,6 +137,13 @@ ol[class] {
   align-items: center;
   justify-content: center;
 }
+.sticky{
+  width: 100%;
+  background-color: white;
+  position: sticky;
+  top: 0px;
+  z-index: 300;
+}
 .header{
   width: 1346px;
   display: flex;
@@ -121,6 +190,7 @@ button{
   color: white;
   height: 100%;
 }
+
 .clr_grey{
     color:#637381
 }
@@ -136,10 +206,17 @@ button{
 .clr_black{
   color: black
 }
-
+.clr_green{
+  color: #76BC21;
+}
+.clr_white{
+  color:white
+}
 .bgd_green{
     background-color: #76BC21;
+    color:white
 }
+
 .bgd_lg{
     background-color: #F4F6F8;
 }
@@ -155,55 +232,55 @@ button{
 }
 
 .font_xs{
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 12px;
   font-weight: 400;
   line-height: 16.8px;
 }
 .font_s_m{
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 14px;
   font-weight: 400;
   line-height: 16.41px;
 }
 .font_s_l{
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 14px;
   font-weight: 500;
   line-height: 16.41px;
 }
 .font_xs_m{
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 12px;
   font-weight: 500;
   line-height: 14.06px;
 }
 .font_s{
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 14px;
   font-weight: 400;
   line-height: 19.6px;
 }
 .font_m{
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 16px;
   font-weight: 400;
   line-height: 22.4px;
 }
 .font_l{
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 16px;
   font-weight: 500;
   line-height: 22.4px;
 }
 .font_xl{
-  font-family: Roboto;
+  font-family: "Roboto";
   font-size: 24px;
   font-weight: 500;
   line-height: 33.6px;
 }
 .font_xxl{
-  font-family: Roboto;
+  font-family:"Roboto";
   font-size: 20px;
   font-weight: 700;
   line-height: 23.44px;
@@ -231,7 +308,11 @@ button{
 .main_btn img{
   padding-right: 8px;
 }
-
+.clicked_btn{
+  background-color: white;
+  border: 1px solid #76BC21;
+  color: #76BC21;
+}
 .banner_wrap{
   display: flex;
   justify-content: center;

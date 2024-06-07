@@ -56,12 +56,15 @@
                         <path d="M9.5 5C5.363 5 2 8.402 2 12.5C2 13.93 2.648 15.168 3.25 16.063C3.60464 16.593 4.01315 17.085 4.469 17.531L15.28 28.375L15.999 29.094L16.718 28.375L27.53 17.531C27.53 17.531 30 15.355 30 12.5C30 8.402 26.637 5 22.5 5C19.066 5 16.855 7.066 16 7.938C15.145 7.066 12.934 5 9.5 5ZM9.5 7C12.488 7 15.25 9.906 15.25 9.906L16 10.75L16.75 9.906C16.75 9.906 19.512 7 22.5 7C25.543 7 28 9.496 28 12.5C28 14.043 26.125 16.125 26.125 16.125L16 26.25L5.875 16.125C5.875 16.125 5.391 15.66 4.906 14.937C4.422 14.216 4 13.274 4 12.5C4 9.496 6.457 7 9.5 7Z" fill="#637381"/>
                         </svg>
                         <p>Избранное</p>
+                        <div class="circle_s" v-if="likedAmount">{{ likedAmount }}</div>
                     </div>
                     <div class="user_cab">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 7C4.45 7 4 7.45 4 8C4 8.55 4.45 9 5 9H7.219L9.844 19.5C10.066 20.39 10.864 21 11.781 21H23.25C24.152 21 24.918 20.402 25.156 19.531L27.75 10H11L11.5 12H25.156L23.25 19H11.781L9.156 8.5C9.04785 8.06931 8.79827 7.68739 8.44724 7.41541C8.09621 7.14344 7.66405 6.99716 7.22 7H5ZM22 21C20.355 21 19 22.355 19 24C19 25.645 20.355 27 22 27C23.645 27 25 25.645 25 24C25 22.355 23.645 21 22 21ZM13 21C11.355 21 10 22.355 10 24C10 25.645 11.355 27 13 27C14.645 27 16 25.645 16 24C16 22.355 14.645 21 13 21ZM13 23C13.563 23 14 23.438 14 24C14 24.563 13.562 25 13 25C12.437 25 12 24.562 12 24C12 23.437 12.438 23 13 23ZM22 23C22.563 23 23 23.438 23 24C23 24.563 22.562 25 22 25C21.437 25 21 24.562 21 24C21 23.437 21.438 23 22 23Z" fill="#637381"/>
                         </svg>
-                        <p>Нет товаров</p>
+                        <p v-if="!goodsAll">Нет товаров</p>
+                        <p v-if="goodsAll">{{goodsCost.toLocaleString()}} сўм</p>
+                        <div class="circle_s" v-if="goodsAll">{{goodsAll}}</div>
                     </div>
            </div>
         </div>
@@ -75,14 +78,30 @@
 </template>
 
 <script>
-
+export default{
+    props:{
+        goodsAll: {
+            required: true,
+            type: Number
+        },
+        goodsCost: {
+            required: true,
+            type: Number
+        },
+        likedAmount: {
+            required: true,
+            type: Number
+        },
+        
+    },
+}
 
 </script>
 
 
 <style scoped>
 h2{
-    font-family: Montserrat;
+    font-family: "Montserrat";
     font-size: 24px;
     font-style: italic;
     font-weight: 700;
@@ -92,7 +111,7 @@ h2{
 
 input{
     padding: 16px;
-    font-family: Roboto;
+    font-family: "Roboto";
     font-size: 14px;
     font-weight: 400;
     line-height: 16.41px;
@@ -117,7 +136,6 @@ select {
     
 }
 .nav_wrap{
-    font-family: "Roboto";
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -184,11 +202,28 @@ select {
 }
 
 .user_cab{
+    position: relative;
     gap: 10px;
 }
 .user_cab img{
    width: 32px; 
    height: 32px;
 }
-
+.circle_s{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    background-color: #76BC21;
+    border-radius: 50%;
+    color: white;
+    top: -3.5px;
+    left: 16px;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+}
 </style>
